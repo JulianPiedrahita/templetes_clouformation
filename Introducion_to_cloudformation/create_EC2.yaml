@@ -1,0 +1,25 @@
+resource:
+    EC2Instance:
+        Type: 'AWS::EC2::Instance'
+        Properties:
+            InstanceType: t2.micro
+            ImageId: ami-467ca739 # Amazon Linux AMI in N.Virginia
+            Tags:
+                - Key:
+                  Value: !Join [ " ", [EC2, Instance, Example, basic, Fn, Join] ]
+            SecurityGroups: 
+                - !Ref MySecurityGroup
+    MySecurityGroup:
+        Type: 'AWS::EC2::SecurityGroup'
+        Properties: 
+            GroupDescription: Enable SSH access 
+            SecurityGroupIngress:
+                - IpProtocol: tpc
+                - FromPort: '22'
+                - ToPort: '22'
+                - CidrIp: 0.0.0.0/0
+            SecurityGroupEgress:
+                - Security Group Rule
+            Tags:
+                - Key:
+                  Value:        
